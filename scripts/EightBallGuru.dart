@@ -22,8 +22,9 @@ void addItemToList()
   String newthing = box.value;
    
   //TODO: format list item better
-  var newItem = new Element.html("<span class='item'><b> $newthing </b></span>");
-  
+  var template = query("#template").innerHTML;
+  var innerHTMLToAdd = template.replaceAll("%newItem%", newthing);
+  var newItem = new Element.html(innerHTMLToAdd);
   var list = query("#List");
   var br = new Element.html("<br/>");
   
