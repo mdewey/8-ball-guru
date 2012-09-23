@@ -20,18 +20,19 @@ void addItemToList()
     
   //add item to list
   String newthing = box.value;
-   
-  //TODO: format list item better
-  var newItem = new Element.html("<span class='item'><b> $newthing </b></span>");
+   if (newthing.length > 0 )
+   {
+      //TODO: format list item better
+      var template = query("#template").innerHTML;
+      var innerHTMLToAdd = template.replaceAll("%newItem%", newthing);
+      var newItem = new Element.html(innerHTMLToAdd);
+      var list = query("#List");
+      list.nodes.add(newItem);
+      //clear input box
+      box.value="";
+
+   }
   
-  var list = query("#List");
-  var br = new Element.html("<br/>");
-  
-  list.nodes.add(newItem);
-  list.nodes.add(br);
-  
-  //clear input box
-  box.value="";
 }
 
 void chooseItem()
@@ -45,6 +46,9 @@ void chooseItem()
     itemList[count] = item.nodes[0].text;
     count++;
   }
+  //remove template from list of selection
+  itemList.remove(--count);
+    
   for (var i = 0; i < count; i ++)
   {
     print(itemList[i]);
