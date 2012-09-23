@@ -26,3 +26,11 @@ p {
   text-align: center;
   margin-top: 140px;
 }
+
+.item
+{
+	margin:0;
+	font-size:2em;
+	height:1.5em;
+	padding-top:1em;
+}
