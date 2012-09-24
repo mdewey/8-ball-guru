@@ -22,17 +22,21 @@ void addItemToList()
   String newthing = box.value;
    if (newthing.length > 0 )
    {
-      //TODO: format list item better
-      var template = query("#template").innerHTML;
-      var innerHTMLToAdd = template.replaceAll("%newItem%", newthing);
-      var newItem = new Element.html(innerHTMLToAdd);
-      var list = query("#List");
-      list.nodes.add(newItem);
+     actuallyAddItemToList(newthing);
       //clear input box
       box.value="";
 
    }
   
+}
+
+void actuallyAddItemToList(newthing)
+{
+  var template = query("#template").innerHTML;
+  var innerHTMLToAdd = template.replaceAll("%newItem%", newthing);
+  var newItem = new Element.html(innerHTMLToAdd);
+  var list = query("#List");
+  list.nodes.add(newItem);
 }
 
 void chooseItem()
@@ -57,12 +61,17 @@ void chooseItem()
   //pick one
   var choice = getChoice(count);
   var selectedItem = itemList[choice];
-  window.alert("Selected item: $selectedItem ");
-  //TODO:clear list
-  
-  
-  //TODO:add this item to list as selected
-  
+ 
+  //clear list
+  var list = query("#List");
+  list.remove();
+  var listParent = query("#listParent");
+  listParent.nodes.add(new Element.html('<div id="List"></div>'));
+  //add this item to list as selected
+  actuallyAddItemToList(selectedItem);
+  var newItem = query('.item');
+  newItem.classes.remove("alert-info");
+  newItem.classes.add("alert-success");
 }
 
 
@@ -70,7 +79,7 @@ int getChoice(max)
 {
   var ch;
   var r = new Random();
-  ch = r.nextInt(max+1) ;
+  ch = r.nextInt(max) ;
   return ch;
 }
 
