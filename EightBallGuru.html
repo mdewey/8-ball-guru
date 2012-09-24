@@ -12,17 +12,22 @@
 		<link rel="stylesheet" href="css/EightBallGuru.css">
   </head>
   <body>
-    <h1>8-Ball Guru</h1>
+    <h4><i class="icon-eye-open"></i> &nbsp; 8-Ball Guru &nbsp; <i class="icon-eye-open"></i> </h4>
     
-    <p>Enter your options and I will choose!</p>
+ 	<span class="subtitle"><i>Enter your options and I will choose!</i></span>
     
-    <div class="well">
-    	<input type="text" class="input-medium search-query" placeholder="Input item here!" id="newItemBox" />
+    <div class="well well-small">
+    	<input type="text" class="input-small search-query" placeholder="Add item!" id="newItemBox" />
     	<button class="btn btn-info" id="addButton"><i class="icon-plus-sign icon-white"></i></button>
-    	<button class="btn btn-info" id="chooseButton"><i class="icon-search icon-white"></i></button>
     </div>
-    <div id="List">
-      
+    <div class="well well-small" id="buttonContainer">
+    	<button class="btn btn-success subtitle hidden" id="resetButton"><i class="icon-refresh icon-white"></i> Go Again?</button>
+    	<button class="btn btn-info subtitle shown" id="chooseButton"><i class="icon-search icon-white"></i> Discover!</button>
+    	
+	</div>
+    <div id="listParent">
+    	<div id="List">
+    	</div>  
     </div>
     
     <div style='display:none' id="template"><div class="alert fade in alert-info item" ><span id="item">%newItem%</span><button type="button" class="close" data-dismiss="alert">X</button></div>
