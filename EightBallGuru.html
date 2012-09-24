@@ -20,8 +20,10 @@
     	<input type="text" class="input-small search-query" placeholder="Add item!" id="newItemBox" />
     	<button class="btn btn-info" id="addButton"><i class="icon-plus-sign icon-white"></i></button>
     </div>
-    <div class="well well-small">
-    	<button class="btn btn-info subtitle" id="chooseButton"><i class="icon-search icon-white"></i> Discover!</button>
+    <div class="well well-small" id="buttonContainer">
+    	<button class="btn btn-success subtitle hidden" id="resetButton"><i class="icon-refresh icon-white"></i> Go Again?</button>
+    	<button class="btn btn-info subtitle shown" id="chooseButton"><i class="icon-search icon-white"></i> Discover!</button>
+    	
 	</div>
     <div id="listParent">
     	<div id="List">

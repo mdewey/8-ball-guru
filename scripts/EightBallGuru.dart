@@ -52,28 +52,31 @@ void chooseItem()
   }
   //remove template from list of selection
   itemList.remove(--count);
-    
-  for (var i = 0; i < count; i ++)
-  {
-    print(itemList[i]);
-  }
 
   //pick one
   var choice = getChoice(count);
   var selectedItem = itemList[choice];
  
   //clear list
-  var list = query("#List");
-  list.remove();
-  var listParent = query("#listParent");
-  listParent.nodes.add(new Element.html('<div id="List"></div>'));
+  clearList();
+  
   //add this item to list as selected
   actuallyAddItemToList(selectedItem);
   var newItem = query('.item');
   newItem.classes.remove("alert-info");
   newItem.classes.add("alert-success");
+  
+  //show reset button
+  toggleButtons();
 }
 
+void clearList()
+{
+  var list = query("#List");
+  list.remove();
+  var listParent = query("#listParent");
+  listParent.nodes.add(new Element.html('<div id="List"></div>'));
+}
 
 int getChoice(max)
 {
@@ -83,6 +86,31 @@ int getChoice(max)
   return ch;
 }
 
+void resetApp()
+{
+  //empty list
+  clearList();
+  //clear input box
+  InputElement box = query('#newItemBox');
+  box.value ="";
+  
+  //toggle buttons
+  toggleButtons();
+}
+
+void toggleButtons()
+{
+  var buttonContainer = query('#buttonContainer');
+  var buttonToShow = buttonContainer.query(".hidden");
+  var buttonToHide = buttonContainer.query('.shown');
+  
+  buttonToHide.classes.remove("shown");
+  buttonToHide.classes.add("hidden");
+  
+  buttonToShow.classes.remove("hidden");
+  buttonToShow.classes.add("shown");
+  
+}
 
 /*
  * Boilerplate functions ??
@@ -97,4 +125,8 @@ void initButtons()
    //pick item
    var chooseButton = document.query('#chooseButton');
    chooseButton.on.click.add((event) => chooseItem() );
+   
+  //reset App
+   var resetButton = document.query('#resetButton');
+   resetButton.on.click.add((event) => resetApp() );
 }
